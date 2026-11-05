@@ -1,0 +1,50 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ListWithNumbers
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            List<string> TNumbers = Console.ReadLine().Split(' ').ToList();
+            List<int> numbers = new List<int>();
+
+            foreach(string number in TNumbers)
+            {
+                numbers.Add(int.Parse(number));
+            }
+            foreach (string number in TNumbers)
+            {
+                Console.WriteLine(number);
+            }
+
+            Console.WriteLine("Count of numbers: " + numbers.Count);
+
+           List <int> PosEvNums = new List<int>();
+            int sum = 0;
+            foreach (int number in numbers)
+            {
+                bool PosNums = number > 0;
+                bool EvNums = number % 2 == 0;
+                
+                if(PosNums && EvNums)
+                {
+                    if (!PosEvNums.Contains(number))
+                    {
+                        PosEvNums.Add(number);
+                        sum += number;
+                    }
+
+                }
+            }
+            Console.WriteLine(string.Join(", ", PosEvNums));
+            Console.WriteLine("Count of positive and even numbers: " + PosEvNums.Count);
+            Console.WriteLine("The sum is: " + sum);
+        } 
+    }
+}
